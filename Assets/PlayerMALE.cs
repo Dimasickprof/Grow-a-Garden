@@ -6,6 +6,8 @@ public class PlayerMALE : MonoBehaviour
 {
     [SerializeField] float movementSpeed = 5f;
     [SerializeField] float jumpForce = 7f;
+    [SerializeField] GameObject trirdCamera;
+    [SerializeField] GameObject firstCamera;
     Rigidbody rb;
     Vector3 direction;
     bool isGround = true;
@@ -29,6 +31,19 @@ public class PlayerMALE : MonoBehaviour
         {
             rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
             isGround = false;
+        }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            if (trirdCamera.activeSelf == true)
+            {
+                trirdCamera.SetActive(false);
+                firstCamera.SetActive(true);
+            }
+            else
+            {
+                trirdCamera.SetActive(true);
+                firstCamera.SetActive(false);
+            }
         }
     }
     void FixedUpdate()
