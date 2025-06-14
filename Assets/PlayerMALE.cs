@@ -9,28 +9,42 @@ public class PlayerMALE : MonoBehaviour
     [SerializeField] GameObject trirdCamera;
     [SerializeField] GameObject firstCamera;
     Rigidbody rb;
+    [SerializeField] Animator anim;
     Vector3 direction;
     bool isGround = true;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        anim = GetComponent<Animator>();
     }
     void OnCollisionEnter(Collision collision)
     {
         isGround = true;
+        anim.SetBool("Jump", false);
     }
     // Update is called once per frame
     void Update()
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
+
         direction = new Vector3(moveHorizontal, 0.0f, moveVertical);
         direction = transform.TransformDirection(direction);
+        if(direction.x != 0 || direction.z != 0)
+        {
+            anim.SetBool("Run",true);
+        }
+        if(direction.x == 0 && direction.z == 0)
+        {
+            anim.SetBool("Run",false);
+        }
+        
         if (Input.GetKeyDown(KeyCode.Space) && isGround)
         {
             rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
             isGround = false;
+            anim.SetBool("Jump", true);
         }
         if (Input.GetKeyDown(KeyCode.C))
         {
