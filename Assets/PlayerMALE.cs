@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerMALE : MonoBehaviour
 {
@@ -8,10 +9,12 @@ public class PlayerMALE : MonoBehaviour
     [SerializeField] float jumpForce = 7f;
     [SerializeField] GameObject trirdCamera;
     [SerializeField] GameObject firstCamera;
+    [SerializeField] TMP_Text cashText;
     Rigidbody rb;
     [SerializeField] Animator anim;
     Vector3 direction;
     bool isGround = true;
+    [SerializeField] int cash = 20;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +29,8 @@ public class PlayerMALE : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        cashText.text = cash.ToString() + "G$";
+
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 

@@ -7239,6 +7239,7 @@ MonoBehaviour:
   jumpForce: 7
   trirdCamera: {fileID: 1067948706}
   firstCamera: {fileID: 963194225}
+  anim: {fileID: 0}
 --- !u!1 &1451287852
 GameObject:
   m_ObjectHideFlags: 0
